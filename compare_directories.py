@@ -9,7 +9,7 @@ new and identical files are reported.
 
 
 __author__ = "Florian Krause <fladd@fladd.de>"
-__version__ = 0.0.1
+__version__ = "0.0.1"
 
 
 import sys
