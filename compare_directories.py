@@ -178,6 +178,11 @@ class App:
                   foreground="darkgrey", width=50,
                   anchor=W).grid(column=0, row=2, sticky=(N, S, E, W))
 
+	for child in self._topframe.winfo_children():
+	    child.grid_configure(padx=5, pady=5)
+	for child in self._bottomframe.winfo_children():
+	    child.grid_configure(padx=5, pady=5)
+
         self._reset_gui()
         self._root.mainloop()
 
@@ -209,13 +214,13 @@ class ReportDialogue:
         self.text["state"] = "disabled"
         self.text.bind("<1>", lambda event: self.text.focus_set())
 
-        b = Button(top, text="OK", command=self.ok)
+        b = ttk.Button(top, text="Close", command=self.close)
         b.pack(pady=10)
 
     def show(self):
         self.master.wait_window(self.top)
 
-    def ok(self):
+    def close(self):
         self.top.destroy()
 
 
