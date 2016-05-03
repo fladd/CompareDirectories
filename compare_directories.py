@@ -9,7 +9,7 @@ new and identical files are reported.
 
 
 __author__ = "Florian Krause <fladd@fladd.de>"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 
 import sys
@@ -129,9 +129,12 @@ class App:
             pass
 
     def _show_gui(self):
-        self._root = Tk()
+	self._root = Tk()
         self._root.title("Compare Directories")
         self._root.resizable(0, 0)
+	if sys.platform.startswith("linux"):
+	    s = ttk.Style()
+	    s.theme_use("clam")
 
         self._reference = StringVar()
         self._test = StringVar()
@@ -148,32 +151,32 @@ class App:
         self._bottomframe.rowconfigure(0, weight=1)
 
         ttk.Label(self._topframe, text="Reference:").grid(column=0, row=0,
-                                                         sticky=(N,W))
-        self._reference_entry = ttk.Entry(self._topframe, width=30,
+                                                         sticky=(S, W))
+        self._reference_entry = ttk.Entry(self._topframe, width=50,
                                          textvariable=self._reference,
                                          state="readonly")
-        self._reference_entry.grid(column=0, row=1, sticky=(N, W))
+        self._reference_entry.grid(column=0, row=1, sticky=(N, S, E, W))
         ttk.Button(self._topframe, text="Open",
                    command=self.add_reference).grid(column=1, row=1,
-                                                    sticky=(N, W))
+                                                    sticky=(N, S, E, W))
 
         ttk.Label(self._topframe, text="Comparing:").grid(column=0, row=2,
-                                                         sticky=(N,W))
-        self._test_entry = ttk.Entry(self._topframe, width=30,
+                                                         sticky=(S, W))
+        self._test_entry = ttk.Entry(self._topframe, width=50,
                                     textvariable=self._test,
                                     state="readonly")
-        self._test_entry.grid(column=0, row=3, sticky=(N, W))
+        self._test_entry.grid(column=0, row=3, sticky=(N, S, E, W))
         ttk.Button(self._topframe, text="Open", command=self.add_test).grid(
-            column=1, row=3, sticky=(N, W))
+            column=1, row=3, sticky=(N, S, E, W))
 
         self._go = ttk.Button(self._bottomframe, text="Go", state="disabled",
                               command=self.compare)
         self._go.grid(column=0, row=0, sticky=(N, S))
         self._progress = ttk.Progressbar(self._bottomframe)
-        self._progress.grid(column=0, row=1, sticky=(E, W))
+        self._progress.grid(column=0, row=1, sticky=(N, S, E, W))
         ttk.Label(self._bottomframe, textvariable=self._status,
-                  foreground="darkgrey",
-                  anchor=W).grid(column=0, row=2, sticky=(E, W))
+                  foreground="darkgrey", width=50,
+                  anchor=W).grid(column=0, row=2, sticky=(N, S, E, W))
 
         self._reset_gui()
         self._root.mainloop()
@@ -201,7 +204,7 @@ class ReportDialogue:
         top.focus_set()
 
         self.text = scrolledtext.ScrolledText(top, width=77)
-        self.text.pack()
+        self.text.pack(fill=BOTH, expand=YES)
         self.text.insert(END, message)
         self.text["state"] = "disabled"
         self.text.bind("<1>", lambda event: self.text.focus_set())
