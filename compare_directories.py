@@ -16,11 +16,16 @@ import sys
 import os
 import filecmp
 
-from tkinter import *
-from tkinter import ttk
-from tkinter import scrolledtext
-import tkFileDialog as filedialog
-import tkFont
+try:
+    from tkinter import *
+    from tkinter import ttk
+    from tkinter import scrolledtext
+    from tkinter import filedialog
+except:
+    from Tkinter import *
+    import ttk
+    import ScrolledText as scrolledtext
+    import tkFileDialog as filedialog
 
 
 class App:
