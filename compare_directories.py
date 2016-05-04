@@ -9,19 +9,19 @@ new and identical files are reported.
 
 
 __author__ = "Florian Krause <fladd@fladd.de>"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 
 import sys
 import os
 import filecmp
 
-try:
+if sys.version[0] == '3':
     from tkinter import *
     from tkinter import ttk
     from tkinter import scrolledtext
     from tkinter import filedialog
-except:
+else:
     from Tkinter import *
     import ttk
     import ScrolledText as scrolledtext
