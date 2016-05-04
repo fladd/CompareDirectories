@@ -9,7 +9,7 @@ new and identical files are reported.
 
 
 __author__ = "Florian Krause <fladd@fladd.de>"
-__version__ = "0.0.3"
+__version__ = "0.1.0"
 
 
 import sys
@@ -129,12 +129,12 @@ class App:
             pass
 
     def _show_gui(self):
-	self._root = Tk()
+        self._root = Tk()
         self._root.title("Compare Directories")
         self._root.resizable(0, 0)
-	if sys.platform.startswith("linux"):
-	    s = ttk.Style()
-	    s.theme_use("clam")
+        if sys.platform.startswith("linux"):
+            s = ttk.Style()
+            s.theme_use("clam")
 
         self._reference = StringVar()
         self._test = StringVar()
@@ -178,10 +178,10 @@ class App:
                   foreground="darkgrey", width=50,
                   anchor=W).grid(column=0, row=2, sticky=(N, S, E, W))
 
-	for child in self._topframe.winfo_children():
-	    child.grid_configure(padx=5, pady=5)
-	for child in self._bottomframe.winfo_children():
-	    child.grid_configure(padx=5, pady=5)
+        for child in self._topframe.winfo_children():
+            child.grid_configure(padx=5, pady=5)
+        for child in self._bottomframe.winfo_children():
+            child.grid_configure(padx=5, pady=5)
 
         self._reset_gui()
         self._root.mainloop()
