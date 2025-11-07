@@ -9,7 +9,7 @@ new and identical files are reported.
 
 
 __author__ = "Florian Krause <fladd@fladd.de>"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 import sys
@@ -138,7 +138,7 @@ class App:
 
         self._reference = StringVar()
         self._test = StringVar()
-        self._status = StringVar("")
+        self._status = StringVar()
 
         self._topframe = ttk.Frame(self._root, padding="5 5 5 5")
         self._topframe.grid(column=0, row=0, sticky=(N, W, E, S))
